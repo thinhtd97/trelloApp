@@ -35,21 +35,21 @@ REST API cho ứng dụng trello được mô tả bên dưới.
 
 `/api/auth/login`
 
-curl --location --request POST 'http://localhost:3003/api/auth/login' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "username": "usertest",
-    "password": "123456"
-}'
+    curl --location --request POST 'http://localhost:3003/api/auth/login' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "username": "usertest",
+        "password": "123456"
+    }'
 
 ### Response
 
-{
-    "fullname": "Tran Duc Thinh",
-    "username": "usertest",
-    "phone": "0335644677",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI"
-}
+    {
+        "fullname": "Tran Duc Thinh",
+        "username": "usertest",
+        "phone": "0335644677",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI"
+    }
 
 ## Lấy danh sách board đã đóng
 
@@ -57,36 +57,67 @@ curl --location --request POST 'http://localhost:3003/api/auth/login' \
 
 `/api/board/closed-board`
 
-curl --location --request GET 'http://localhost:3003/api/board/closed-board' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "title": "Board"
-}'
+    curl --location --request GET 'http://localhost:3003/api/board/closed-board' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "title": "Board"
+    }'
 
 ## Response
 
-[
+    [
+        {
+            "member": [
+                "60a939c5ab6ecb4e0cade7e7"
+            ],
+            "star": false,
+            "closed": true,
+            "column": [],
+            "_id": "60a93b7dab6ecb4e0cade7ea",
+            "title": "Second Board",
+            "user": "60a939c5ab6ecb4e0cade7e7",
+            "createdAt": "2021-05-22T17:12:29.442Z",
+            "updatedAt": "2021-05-22T17:12:29.442Z",
+            "__v": 0
+        },
+        {
+            "member": [
+                "60a939c5ab6ecb4e0cade7e7"
+            ],
+            "star": false,
+            "closed": true,
+            "column": [],
+            "_id": "60a93b81ab6ecb4e0cade7eb",
+            "title": "Third Board",
+            "user": "60a939c5ab6ecb4e0cade7e7",
+            "createdAt": "2021-05-22T17:12:33.108Z",
+            "updatedAt": "2021-05-22T17:12:33.108Z",
+            "__v": 0
+        }
+    ]
+
+## Tạo bảng
+
+## Request
+
+`/api/board`
+
+    curl --location --request POST 'http://localhost:3003/api/board/' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "title": "Third Board"
+    }'
+
+## Response
+
     {
         "member": [
             "60a939c5ab6ecb4e0cade7e7"
         ],
         "star": false,
-        "closed": true,
-        "column": [],
-        "_id": "60a93b7dab6ecb4e0cade7ea",
-        "title": "Second Board",
-        "user": "60a939c5ab6ecb4e0cade7e7",
-        "createdAt": "2021-05-22T17:12:29.442Z",
-        "updatedAt": "2021-05-22T17:12:29.442Z",
-        "__v": 0
-    },
-    {
-        "member": [
-            "60a939c5ab6ecb4e0cade7e7"
-        ],
-        "star": false,
-        "closed": true,
+        "closed": false,
         "column": [],
         "_id": "60a93b81ab6ecb4e0cade7eb",
         "title": "Third Board",
@@ -95,35 +126,4 @@ curl --location --request GET 'http://localhost:3003/api/board/closed-board' \
         "updatedAt": "2021-05-22T17:12:33.108Z",
         "__v": 0
     }
-]
-
-## Tạo bảng
-
-## Request
-
-`/api/board`
-
-curl --location --request POST 'http://localhost:3003/api/board/' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "title": "Third Board"
-}'
-
-## Response
-
-{
-    "member": [
-        "60a939c5ab6ecb4e0cade7e7"
-    ],
-    "star": false,
-    "closed": false,
-    "column": [],
-    "_id": "60a93b81ab6ecb4e0cade7eb",
-    "title": "Third Board",
-    "user": "60a939c5ab6ecb4e0cade7e7",
-    "createdAt": "2021-05-22T17:12:33.108Z",
-    "updatedAt": "2021-05-22T17:12:33.108Z",
-    "__v": 0
-}
 
