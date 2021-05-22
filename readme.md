@@ -106,7 +106,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
         }
     ]
 ### Trong đó: 
-    * title: Tiêu đề bảng
+   * title: Tiêu đề bảng
 
 ## Tạo bảng
 
@@ -138,5 +138,5 @@ REST API cho ứng dụng trello được mô tả bên dưới.
         "__v": 0
     }
 ### Trong đó: 
-    * title: Tiêu đề bảng
+   * title: Tiêu đề bảng
 
