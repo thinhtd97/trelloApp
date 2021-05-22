@@ -22,12 +22,12 @@ REST API cho ứng dụng trello được mô tả bên dưới.
 
 ### Response
 
-{
-    "fullname": "Tran Duc Thinh",
-    "username": "usertest",
-    "phone": "0335644677",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzExMCwiZXhwIjoxNjI0Mjk1MTEwfQ.In1Wp8eltodibhZY3Ls3t7cDvjyyUffUvJ2GKfwLmmo"
-}
+    {
+        "fullname": "Tran Duc Thinh",
+        "username": "usertest",
+        "phone": "0335644677",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzExMCwiZXhwIjoxNjI0Mjk1MTEwfQ.In1Wp8eltodibhZY3Ls3t7cDvjyyUffUvJ2GKfwLmmo"
+    }
 
 ## Đăng nhập
 
