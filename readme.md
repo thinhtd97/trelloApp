@@ -28,6 +28,12 @@ REST API cho ứng dụng trello được mô tả bên dưới.
         "phone": "0335644677",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzExMCwiZXhwIjoxNjI0Mjk1MTEwfQ.In1Wp8eltodibhZY3Ls3t7cDvjyyUffUvJ2GKfwLmmo"
     }
+### Trong đó: 
+   * username: Tài khoản dùng để đăng nhập
+   * fullname: Họ và tên
+   * password: Mật khẩu dùng để đăng nhập
+   * phone: Số điện thoại người dùng
+
 
 ## Đăng nhập
 
@@ -50,6 +56,9 @@ REST API cho ứng dụng trello được mô tả bên dưới.
         "phone": "0335644677",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI"
     }
+### Trong đó: 
+   * username: Tài khoản dùng để đăng nhập
+   * password: Mật khẩu dùng để đăng nhập
 
 ## Lấy danh sách board đã đóng
 
@@ -96,6 +105,8 @@ REST API cho ứng dụng trello được mô tả bên dưới.
             "__v": 0
         }
     ]
+### Trong đó: 
+    * title: Tiêu đề bảng
 
 ## Tạo bảng
 
@@ -126,4 +137,6 @@ REST API cho ứng dụng trello được mô tả bên dưới.
         "updatedAt": "2021-05-22T17:12:33.108Z",
         "__v": 0
     }
+### Trong đó: 
+    * title: Tiêu đề bảng
 
