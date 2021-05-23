@@ -162,7 +162,10 @@ const reOrderTaskInColumn = async (req, res) => {
         ListEditingElement.list_task = ListEditingCardIds;
         const updated = await ListEditingElement.save();
 
-        return res.status(200).json(updated);
+        return res.status(200).json({
+            code: 200,
+            message: "REORDER SUCCESSFUL"
+        });
 
     } catch (error) {
         console.log(error);

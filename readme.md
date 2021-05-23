@@ -959,9 +959,84 @@
    * list_editing: chỉ mục column chứa nó
    * description: nội dung task
       
+## Sắp xếp task trong column
+
+### Body
+
+    {
+    "ListEditingId": "60a9c95a83809d358190a7ce",
+    "ListEditingCardIds": [
+            "60a9d03f0bd55c3ee9789a73", 
+            "60a9d03c0bd55c3ee9789a72", 
+            "60a9d0320bd55c3ee9789a71"
+        ]
+    }
+
+
+### Request
+    `POST /api/list-editing/reorder/samecolumn`
+    
+       curl --location --request POST 'http://localhost:3003/api/list-editing/reorder/samecolumn' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+    "ListEditingId": "60a9c95a83809d358190a7ce",
+    "ListEditingCardIds": ["60a9d03f0bd55c3ee9789a73", "60a9d03c0bd55c3ee9789a72", "60a9d0320bd55c3ee9789a71"]
+    }'
+
+    
+### Response
+    {
+        "code": 200,
+        "message": "REORDER SUCCESSFUL"
+    }
+### Trong đó: 
+   * ListEditingCardIds: Thứ tự mới do frontend trả về để cập nhật
+   * ListEditingId: column cần được sắp xếp
       
-      
-      
+## Sắp xếp task khác column
+
+### Body
+
+
+    {
+        "removedColumnId": "60a9c95a83809d358190a7ce",
+        "removedColumnCardIds": [
+                "60a9d03f0bd55c3ee9789a73", 
+                "60a9d03c0bd55c3ee9789a72"
+            ],
+        "addedColumnId": "60a9c95f83809d358190a7cf",
+        "addedColumnCardIds": ["60a9d0320bd55c3ee9789a71"]
+    }
+
+
+### Request
+    `POST /api/list-editing/reorder/samecolumn`
+    
+    curl --location --request POST 'http://localhost:3003/api/list-editing/reoder/differentcolumn' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "removedColumnId": "60a9c95a83809d358190a7ce",
+        "removedColumnCardIds": [
+                "60a9d03f0bd55c3ee9789a73", 
+                "60a9d03c0bd55c3ee9789a72"
+            ],
+        "addedColumnId": "60a9c95f83809d358190a7cf",
+        "addedColumnCardIds": ["60a9d0320bd55c3ee9789a71"]
+    }'
+
+    
+### Response
+    {
+        "code": 200,
+        "message": "Reoder successful."
+    }
+### Trong đó: 
+   * removedColumnId: column được thay đổi xoá task
+   * removedColumnCardIds: danh sách task của colum bị xoá
+   * addedColumnId: danh sách task của colum được thêm
+   * addedColumnCardIds: danh sách task của colum được thêm
       
       
       
