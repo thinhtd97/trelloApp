@@ -36,7 +36,7 @@
             "phone": "0335644677",
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzExMCwiZXhwIjoxNjI0Mjk1MTEwfQ.In1Wp8eltodibhZY3Ls3t7cDvjyyUffUvJ2GKfwLmmo"
         }
-    ### Trong đó: 
+   ### Trong đó: 
        * username: Tài khoản dùng để đăng nhập
        * fullname: Họ và tên
        * password: Mật khẩu dùng để đăng nhập
