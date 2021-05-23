@@ -1,12 +1,12 @@
-    # Backend Trello Clone Application
+   # Backend Trello Clone Application
 
-    # REST API
+   # REST API
 
-    REST API cho ứng dụng trello được mô tả bên dưới.
+   REST API cho ứng dụng trello được mô tả bên dưới.
 
-    ## Đăng ký
+   ## Đăng ký
 
-    ### Body
+   ### Body
         {
             "username": "thinhtd",
             "fullname": "Tran Duc Thinh",
@@ -14,7 +14,7 @@
             "phone": "0335644677"
         }
 
-    ### Request
+   ### Request
 
     `POST /api/auth/register`
 
@@ -28,7 +28,7 @@
         }'
 
 
-    ### Response
+   ### Response
 
         {
             "fullname": "Tran Duc Thinh",
@@ -36,22 +36,22 @@
             "phone": "0335644677",
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzExMCwiZXhwIjoxNjI0Mjk1MTEwfQ.In1Wp8eltodibhZY3Ls3t7cDvjyyUffUvJ2GKfwLmmo"
         }
-    ### Trong đó: 
-       * username: Tài khoản dùng để đăng nhập
-       * fullname: Họ và tên
-       * password: Mật khẩu dùng để đăng nhập
-       * phone: Số điện thoại người dùng
+ ### Trong đó: 
+   * username: Tài khoản dùng để đăng nhập
+   * fullname: Họ và tên
+   * password: Mật khẩu dùng để đăng nhập
+   * phone: Số điện thoại người dùng
 
 
-    ## Đăng nhập
+   ## Đăng nhập
 
-    ### Body
+   ### Body
         {
             "username": "usertest",
             "password": "123456"
         }
 
-    ### Request
+   ### Request
 
     `POST /api/auth/login`
 
@@ -62,7 +62,7 @@
             "password": "123456"
         }'
 
-    ### Response
+   ### Response
 
         {
             "fullname": "Tran Duc Thinh",
@@ -70,19 +70,19 @@
             "phone": "0335644677",
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI"
         }
-    ### Trong đó: 
-       * username: Tài khoản dùng để đăng nhập
-       * password: Mật khẩu dùng để đăng nhập
+### Trong đó: 
+   * username: Tài khoản dùng để đăng nhập
+   * password: Mật khẩu dùng để đăng nhập
 
-    ## Lấy danh sách board đã đóng
+   ## Lấy danh sách board đã đóng
 
-    ### Body
+   ### Body
         {
             "title": "Board"
         }
 
-    ### Request
-
+   ### Request
+    
     `GET /api/board/closed-board`
 
         curl --location --request GET 'http://localhost:3003/api/board/closed-board' \
@@ -92,7 +92,7 @@
             "title": "Board"
         }'
 
-    ### Response
+   ### Response
 
         [
             {
@@ -110,13 +110,13 @@
                 "__v": 0
             },
         ]
-    ### Trong đó: 
-       * title: Tiêu đề bảng
-       * headers: nhận token từ login, Authorization: Bearer {token}
+### Trong đó: 
+ * title: Tiêu đề bảng
+ * headers: nhận token từ login, Authorization: Bearer {token}
 
-    ## Tạo bảng
+   ## Tạo bảng
 
-    ### Request
+   ### Request
 
     `POST /api/board`
 
@@ -127,7 +127,7 @@
             "title": "Third Board"
         }'
 
-    ### Response
+   ### Response
 
         {
             "member": [
@@ -143,12 +143,12 @@
             "updatedAt": "2021-05-22T17:12:33.108Z",
             "__v": 0
         }
-    ### Trong đó: 
-       * title: Tiêu đề bảng
-       * headers: nhận token từ login, Authorization: Bearer {token}
-    ## Lấy danh sách bảng
+   ### Trong đó: 
+    * title: Tiêu đề bảng
+    * headers: nhận token từ login, Authorization: Bearer {token}
+   ## Lấy danh sách bảng
 
-    ### Request
+   ### Request
         `GET /api/board`
 
         curl --location --request GET 'http://localhost:3003/api/board' \
@@ -157,7 +157,7 @@
         --data-raw '{
             "title": "Board"
         }'
-    ### Response
+   ### Response
         [
             {
                 "member": [
@@ -174,19 +174,19 @@
                 "__v": 0
             },
         ]
-    ### Trong đó: 
-       * headers: nhận token từ login, Authorization: Bearer {token}
+   ### Trong đó: 
+    * headers: nhận token từ login, Authorization: Bearer {token}
 
-    ## Lấy danh sách bảng không có star
+   ## Lấy danh sách bảng không có star
 
-    ### Request
+   ### Request
         `GET /api/board/without-star`
 
         curl --location --request GET 'http://localhost:3003/api/board/without-star' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
         --data-raw ''
 
-    ### Response
+   ### Response
          [
             {
                 "member": [
@@ -203,19 +203,19 @@
                 "__v": 0
             },
         ]
-    ### Trong đó: 
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * headers: Authorization: Bearer {token}
 
-    ## Lấy danh sách bảng có star
-
-    ### Request
+   ## Lấy danh sách bảng có star
+   
+   ### Request
         `GET /api/board/star`
 
         curl --location --request GET 'http://localhost:3003/api/board/star' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
         --data-raw ''
 
-    ### Response
+   ### Response
          [
             {
                 "member": [
@@ -232,63 +232,30 @@
                 "__v": 0
             }
         ]
-    ### Trong đó: 
-       * headers: Authorization: Bearer {token}      
+   ### Trong đó: 
+    * headers: Authorization: Bearer {token}      
 
+   ## Xoá bảng
 
-    ## Cập nhật bảng
-
-    ### Request
-        `PUT /api/board/:id`
-
-           curl --location --request PUT 'http://localhost:3003/api/board/60a93b79ab6ecb4e0cade7e9' \
-        --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
-        --header 'Content-Type: application/json' \
-        --data-raw '{
-            "title": "Title Updated"
-        }'
-
-    ### Response
-          {
-            "member": [
-                "60a939c5ab6ecb4e0cade7e7"
-            ],
-            "star": true,
-            "closed": false,
-            "column": [],
-            "_id": "60a93b79ab6ecb4e0cade7e9",
-            "title": "Title Updated",
-            "user": "60a939c5ab6ecb4e0cade7e7",
-            "createdAt": "2021-05-22T17:12:25.309Z",
-            "updatedAt": "2021-05-23T02:31:13.667Z",
-            "__v": 0
-        }
-    ### Trong đó: 
-       * id: chỉ mục của bảng
-       * headers: Authorization: Bearer {token}
-
-
-     ## Xoá bảng
-
-    ### Request
+   ### Request
         `DELETE /api/board/:id`
 
           curl --location --request DELETE 'http://localhost:3003/api/board/60a93b62ab6ecb4e0cade7e8' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
         --data-raw ''
 
-    ### Response
+   ### Response
           {
             code: 200,
             message: "DELETE SUCCESSFUL."
            }
-    ### Trong đó: 
-       * id: chỉ mục của bảng    
-       * headers: Authorization: Bearer {token} 
+   ### Trong đó: 
+    * id: chỉ mục của bảng    
+    * headers: Authorization: Bearer {token} 
 
-    ## Cập nhật bảng
+   ## Cập nhật bảng
 
-    ### Request
+   ### Request
         `PUT /api/board/:id`
 
            curl --location --request PUT 'http://localhost:3003/api/board/60a93b79ab6ecb4e0cade7e9' \
@@ -298,7 +265,7 @@
             "title": "Title Updated"
         }'
 
-    ### Response
+   ### Response
           {
             "member": [
                 "60a939c5ab6ecb4e0cade7e7"
@@ -313,37 +280,37 @@
             "updatedAt": "2021-05-23T02:31:13.667Z",
             "__v": 0
         }
-    ### Trong đó: 
-       * id: chỉ mục của bảng
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * id: chỉ mục của bảng
+    * headers: Authorization: Bearer {token}
 
 
-    ## Cập nhật star
+   ## Cập nhật star
 
-    ### Request
+   ### Request
         `PUT /api/board/update-star/:id`
 
           curl --location --request PUT 'http://localhost:3003/api/board/update-star/60a93b79ab6ecb4e0cade7e9' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI'
 
-    ### Response
+   ### Response
           {
             code: 200,
             message: "UPDATE STAR SUCCESSFUL."
            }
-    ### Trong đó: 
-       * id: chỉ mục của bảng  
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * id: chỉ mục của bảng  
+    * headers: Authorization: Bearer {token}
 
-    ## Mời thành viên
+   ## Mời thành viên
 
-    ### Body
+   ### Body
         {
             "username": "tientd",
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }
 
-    ### Request
+   ### Request
         `POST /api/board/invite`
 
         curl --location --request POST 'http://localhost:3003/api/board/invite' \
@@ -354,23 +321,23 @@
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }'
 
-    ### Response
+   ### Response
           {
             "code": 200,
             "message": "Invited Member."
            }
-    ### Trong đó: 
-       * username: tài khoản thành viên  
-       * idBoard: chỉ mục của bảng được mời
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * username: tài khoản thành viên  
+    * idBoard: chỉ mục của bảng được mời
+    * headers: Authorization: Bearer {token}
 
-    ## Tạo column
+   ## Tạo column
 
-    ### Body
+   ### Body
         {
             "title": "To do"
         }
-    ### Request
+   ### Request
         `POST /api/list-editing/:boardId`
 
         curl --location --request POST 'http://localhost:3003/api/list-editing/60a93b79ab6ecb4e0cade7e9' \
@@ -380,27 +347,27 @@
             "title": "To do"
         }'
 
-    ### Response
+   ### Response
           {
             "code": 200,
             "message": "Create List Task Success"
         }
-    ### Trong đó: 
-       * title: tiêu đề của column
-       * boardId: chỉ mục của bảng
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * title: tiêu đề của column
+    * boardId: chỉ mục của bảng
+    * headers: Authorization: Bearer {token}
 
 
-    ## Danh sách column
+   ## Danh sách column
 
-    ### Request
+   ### Request
         `POST /api/list-editing/:boardId`
 
         curl --location --request GET 'http://localhost:3003/api/list-editing/60a93b79ab6ecb4e0cade7e9' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
         --data-raw ''
 
-    ### Response
+   ### Response
           [
             {
                 "list_task": [],
@@ -412,43 +379,43 @@
                 "__v": 0
             }
         ]
-    ### Trong đó: 
-       * boardId: chỉ mục của bảng
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * boardId: chỉ mục của bảng
+    * headers: Authorization: Bearer {token}
 
 
-    ## Xoá column
+   ## Xoá column
 
-    ### Body 
+   ### Body 
         {
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }
 
-    ### Request
+   ### Request
         `DELETE /api/list-editing/:id`
 
            curl --location --request DELETE 'http://localhost:3003/api/list-editing/60a9c5b8e46c493187549966' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYThjNzY0YmE3ZDEzNDBhMmY0Y2Q0YiIsImlhdCI6MTYyMTY3NDQ2MywiZXhwIjoxNjI0MjY2NDYzfQ.1IV2hWCq4NmzgqzYIkwSj_rKAi5wAFRqVH0OjJig5QE' \
         --data-raw ''
 
-    ### Response
+   ### Response
           {
             "code": 200,
             "message": "Remove Successful"
         }
-    ### Trong đó: 
-       * id: chỉ mục của column
-       * idBoard: chỉ mục board chứa nó
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * id: chỉ mục của column
+    * idBoard: chỉ mục board chứa nó
+    * headers: Authorization: Bearer {token}
 
-    ## Cập nhật column
+   ## Cập nhật column
 
-    ### Body
+   ### Body
         {
             "title": "Process updated"
         }
 
-    ### Request
+   ### Request
         `PUT /api/list-editing/:id`
 
            curl --location --request PUT 'http://localhost:3003/api/list-editing/60a9c96683809d358190a7d1' \
@@ -458,8 +425,8 @@
             "title": "Process updated"
         }'
 
-    ### Response
-          {
+   ### Response
+       {
             "list_task": [],
             "_id": "60a9c96683809d358190a7d1",
             "title": "Process updated",
@@ -468,19 +435,19 @@
             "updatedAt": "2021-05-23T03:18:58.561Z",
             "__v": 0
         }
-    ### Trong đó: 
-       * id: chỉ mục của column
-       * title: tiêu đề mới cần sửa
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * id: chỉ mục của column
+    * title: tiêu đề mới cần sửa
+    * headers: Authorization: Bearer {token}
 
-    ## Sao chép column
+   ## Sao chép column
 
-    ### Body
+   ### Body
         {
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }
 
-    ### Request
+   ### Request
         `POST /api/list-editing/copy/:id`
 
          curl --location --request POST 'http://localhost:3003/api/list-editing/copy/60a9c96683809d358190a7d1' \
@@ -490,8 +457,8 @@
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }'
 
-    ### Response
-          {
+   ### Response
+        {
             "list_task": [],
             "_id": "60a9c96683809d358190a7d1",
             "title": "Process updated",
@@ -500,15 +467,15 @@
             "updatedAt": "2021-05-23T03:18:58.561Z",
             "__v": 0
         }
-    ### Trong đó: 
-       * id: chỉ mục của column
-       * idBoard: chỉ mục của bảng 
-       * title: tiêu đề mới cần sửa
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * id: chỉ mục của column
+    * idBoard: chỉ mục của bảng 
+    * title: tiêu đề mới cần sửa
+    * headers: Authorization: Bearer {token}
 
-    ##  Sắp xếp vị trí column trong bảng
+   ##  Sắp xếp vị trí column trong bảng
 
-    ### Body
+   ### Body
            {
             "boardId": "60a93b79ab6ecb4e0cade7e9",
             "newColumnOrder": [
@@ -520,7 +487,7 @@
             ]
         }
 
-    ### Request
+   ### Request
         `POST /api/board/reoder-column`
 
         curl --location --request POST 'http://localhost:3003/api/board/reoder-column' \
@@ -536,25 +503,25 @@
                 "60a9cb5d64e83738b794a1e6"
             ]
         }'
+        
+   ### Response
+        {
+           "code": 200,
+           "message": "Reorder successful."
+        }
+   ### Trong đó: 
+    * idBoard: chỉ mục của bảng cần sửa
+    * newColumnOrder: thứ tự mới cần sắp xếp lại
+    * headers: Authorization: Bearer {token}
 
-    ### Response
-          {
-        "code": 200,
-        "message": "Reorder successful."
-    }
-    ### Trong đó: 
-       * idBoard: chỉ mục của bảng cần sửa
-       * newColumnOrder: thứ tự mới cần sắp xếp lại
-       * headers: Authorization: Bearer {token}
+   ## Danh sách task
 
-    ## Danh sách task
-
-    ### Body 
+   ### Body 
         {
             "idList": "60a9c95a83809d358190a7ce"
         }
 
-    ### Request
+   ### Request
         `GET /api/task`
 
          curl --location --request GET 'http://localhost:3003/api/task' \
@@ -564,7 +531,7 @@
             "idList": "60a9c95a83809d358190a7ce"
         }'
 
-    ### Response
+   ### Response
           [
             {
                 "status": "Uncompleted",
@@ -581,22 +548,22 @@
                 "__v": 0
             },
         ]
-    ### Trong đó: 
-       * idList: chỉ mục column chứa nó
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * idList: chỉ mục column chứa nó
+    * headers: Authorization: Bearer {token}
 
 
 
-    ## Tạo task
+   ## Tạo task
 
-    ### Body 
+   ### Body 
         {
             "title": "Fourth Task",
             "idList": "60a9c95a83809d358190a7ce",
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }
 
-    ### Request
+   ### Request
         `POST /api/task`
 
            curl --location --request POST 'http://localhost:3003/api/task' \
@@ -608,7 +575,7 @@
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }'
 
-    ### Response
+   ### Response
          {
             "status": "Uncompleted",
             "activity": [
@@ -623,21 +590,21 @@
             "updatedAt": "2021-05-23T03:47:24.485Z",
             "__v": 0
         }
-    ### Trong đó: 
-       * idList: chỉ mục column chứa nó
-       * headers: Authorization: Bearer {token}
-       * idBoard: Bảng chứa column chứa nó
-       * title: Tiêu đề task
+   ### Trong đó: 
+    * idList: chỉ mục column chứa nó
+    * headers: Authorization: Bearer {token}
+    * idBoard: Bảng chứa column chứa nó
+    * title: Tiêu đề task
 
-    ## Xoá Task
+   ## Xoá Task
 
-    ### Body
+   ### Body
         {
             "idList": "60a8cd3c9fd5fb461ff35a5f"
         }
 
 
-    ### Request
+   ### Request
         `POST /api/task/:taskId`
 
          curl --location --request DELETE 'http://localhost:3003/api/task/60a9d04c0bd55c3ee9789a74' \
@@ -647,24 +614,24 @@
             "idList": "60a8cd3c9fd5fb461ff35a5f"
         }'
 
-    ### Response
+   ### Response
          {
             "code": 200,
             "message": "DELETE SUCCESSFUL"
         }
-    ### Trong đó: 
-       * idList: chỉ mục column chứa nó
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * idList: chỉ mục column chứa nó
+    * headers: Authorization: Bearer {token}
 
-    ## Lấy chi tiết task
+   ## Lấy chi tiết task
 
-    ### Body
+   ### Body
         {
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }
 
 
-    ### Request
+   ### Request
         `GET /api/task/:taskId`
 
          curl --location --request GET 'http://localhost:3003/api/task/60a9d0320bd55c3ee9789a71' \
@@ -674,7 +641,7 @@
             "idBoard": "60a93b79ab6ecb4e0cade7e9"
         }'
 
-    ### Response
+   ### Response
          {
             "status": "Uncompleted",
             "activity": [
@@ -689,14 +656,14 @@
             "updatedAt": "2021-05-23T03:46:59.099Z",
             "__v": 0
         }
-    ### Trong đó: 
-       * idBoard: chỉ mục board chứa nó
-       * taskId: chỉ mục task cần tìm kiếm
-       * headers: Authorization: Bearer {token}
+   ### Trong đó: 
+    * idBoard: chỉ mục board chứa nó
+    * taskId: chỉ mục task cần tìm kiếm
+    * headers: Authorization: Bearer {token}
 
-    ## Cập nhật task
+   ## Cập nhật task
 
-    ### Body
+   ### Body
         {
             "idList": "60a9c95a83809d358190a7ce",
             "title": "Title Updated",
@@ -706,7 +673,7 @@
         }
 
 
-    ### Request
+   ### Request
         `GET /api/task/:taskId`
 
            curl --location --request PUT 'http://localhost:3003/api/task/60a9d0320bd55c3ee9789a71' \
@@ -720,7 +687,7 @@
             "status": "Over Due"
         }'
 
-    ### Response
+   ### Response
          {
             "status": "Over Due",
             "activity": [
@@ -736,14 +703,14 @@
             "__v": 0,
             "description": "Description"
         }
-    ### Trong đó: 
-       * status: trạng thái task
-       * activity: hoạt động của task
-       * headers: Authorization: Bearer {token}
-       * title: tiêu đề task
-       * taskId: chỉ mục task
-       * list_editing: chỉ mục column chứa nó
-       * description: nội dung task
+   ### Trong đó: 
+    * status: trạng thái task
+    * activity: hoạt động của task
+    * headers: Authorization: Bearer {token}
+    * title: tiêu đề task
+    * taskId: chỉ mục task
+    * list_editing: chỉ mục column chứa nó
+    * description: nội dung task
 
 
 
@@ -794,7 +761,7 @@
             "updatedAt": "2021-05-23T03:46:59.099Z",
             "__v": 0
         },
-    ]
+      ]
 ### Trong đó: 
    * idList: chỉ mục column chứa nó
    * headers: Authorization: Bearer {token}
@@ -863,7 +830,7 @@
     
 ### Response
      {
-        "code": 200,
+        "code": 200,Cancel changes
         "message": "DELETE SUCCESSFUL"
     }
 ### Trong đó: 
@@ -962,7 +929,6 @@
 ## Sắp xếp task trong column
 
 ### Body
-
     {
     "ListEditingId": "60a9c95a83809d358190a7ce",
     "ListEditingCardIds": [
@@ -1028,10 +994,10 @@
 
     
 ### Response
-    {
+      {
         "code": 200,
         "message": "Reoder successful."
-    }
+      }
 ### Trong đó: 
    * removedColumnId: column được thay đổi xoá task
    * removedColumnCardIds: danh sách task của colum bị xoá
