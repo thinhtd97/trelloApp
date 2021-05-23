@@ -37,10 +37,10 @@
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzExMCwiZXhwIjoxNjI0Mjk1MTEwfQ.In1Wp8eltodibhZY3Ls3t7cDvjyyUffUvJ2GKfwLmmo"
         }
    ### Trong đó: 
-       * username: Tài khoản dùng để đăng nhập
-       * fullname: Họ và tên
-       * password: Mật khẩu dùng để đăng nhập
-       * phone: Số điện thoại người dùng
+     * username: Tài khoản dùng để đăng nhập
+     * fullname: Họ và tên
+     * password: Mật khẩu dùng để đăng nhập
+     * phone: Số điện thoại người dùng
 
 
    ## Đăng nhập
@@ -71,8 +71,8 @@
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI"
         }
    ### Trong đó: 
-       * username: Tài khoản dùng để đăng nhập
-       * password: Mật khẩu dùng để đăng nhập
+      * username: Tài khoản dùng để đăng nhập
+      * password: Mật khẩu dùng để đăng nhập
 
    ## Lấy danh sách board đã đóng
 
