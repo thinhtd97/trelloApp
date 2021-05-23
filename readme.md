@@ -6,6 +6,14 @@ REST API cho ứng dụng trello được mô tả bên dưới.
 
 ## Đăng ký
 
+### Body
+    {
+        "username": "thinhtd",
+        "fullname": "Tran Duc Thinh",
+        "password": "123456",
+        "phone": "0335644677"
+    }
+
 ### Request
 
 `POST /api/auth/register`
@@ -37,6 +45,12 @@ REST API cho ứng dụng trello được mô tả bên dưới.
 
 ## Đăng nhập
 
+### Body
+    {
+        "username": "usertest",
+        "password": "123456"
+    }
+
 ### Request
 
 `POST /api/auth/login`
@@ -61,6 +75,11 @@ REST API cho ứng dụng trello được mô tả bên dưới.
    * password: Mật khẩu dùng để đăng nhập
 
 ## Lấy danh sách board đã đóng
+
+### Body
+    {
+        "title": "Board"
+    }
 
 ### Request
 
@@ -93,6 +112,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
     ]
 ### Trong đó: 
    * title: Tiêu đề bảng
+   * headers: nhận token từ login, Authorization: Bearer {token}
 
 ## Tạo bảng
 
@@ -125,6 +145,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
     }
 ### Trong đó: 
    * title: Tiêu đề bảng
+   * headers: nhận token từ login, Authorization: Bearer {token}
 ## Lấy danh sách bảng
 
 ### Request
@@ -154,7 +175,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
         },
     ]
 ### Trong đó: 
-   * headers: nhận token từ login
+   * headers: nhận token từ login, Authorization: Bearer {token}
      
 ## Lấy danh sách bảng không có star
 
@@ -183,7 +204,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
         },
     ]
 ### Trong đó: 
-   * headers: Authorization: Beaer {token}
+   * headers: Authorization: Bearer {token}
       
 ## Lấy danh sách bảng có star
 
@@ -212,7 +233,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
         }
     ]
 ### Trong đó: 
-   * headers: Authorization: Beaer {token}      
+   * headers: Authorization: Bearer {token}      
       
       
 ## Cập nhật bảng
@@ -244,7 +265,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
     }
 ### Trong đó: 
    * id: chỉ mục của bảng
-   * headers: Authorization: {token}
+   * headers: Authorization: Bearer {token}
 
 
  ## Xoá bảng
@@ -263,7 +284,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
        }
 ### Trong đó: 
    * id: chỉ mục của bảng    
-   * headers: Authorization: {token} 
+   * headers: Authorization: Bearer {token} 
       
 ## Cập nhật bảng
 
@@ -294,7 +315,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
     }
 ### Trong đó: 
    * id: chỉ mục của bảng
-   * headers: Authorization: {token}
+   * headers: Authorization: Bearer {token}
 
 
 ## Cập nhật star
@@ -312,7 +333,7 @@ REST API cho ứng dụng trello được mô tả bên dưới.
        }
 ### Trong đó: 
    * id: chỉ mục của bảng  
-   * headers: Authorization: {token}
+   * headers: Authorization: Bearer {token}
   
 ## Mời thành viên
 
@@ -341,16 +362,150 @@ REST API cho ứng dụng trello được mô tả bên dưới.
 ### Trong đó: 
    * username: tài khoản thành viên  
    * idBoard: chỉ mục của bảng được mời
-   * headers: Authorization: {token}
+   * headers: Authorization: Bearer {token}
       
+## Tạo column
+
+### Body
+    {
+        "title": "To do"
+    }
+### Request
+    `POST /api/list-editing/:boardId`
+    
+    curl --location --request POST 'http://localhost:3003/api/list-editing/60a93b79ab6ecb4e0cade7e9' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "title": "To do"
+    }'
+    
+### Response
+      {
+        "code": 200,
+        "message": "Create List Task Success"
+    }
+### Trong đó: 
+   * title: tiêu đề của column
+   * boardId: chỉ mục của bảng
+   * headers: Authorization: Bearer {token}
+
+
+## Danh sách column
+
+### Request
+    `POST /api/list-editing/:boardId`
+    
+    curl --location --request GET 'http://localhost:3003/api/list-editing/60a93b79ab6ecb4e0cade7e9' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --data-raw ''
+    
+### Response
+      [
+        {
+            "list_task": [],
+            "_id": "60a9c43ce46c493187549963",
+            "title": "To do",
+            "idBoard": "60a93b79ab6ecb4e0cade7e9",
+            "createdAt": "2021-05-23T02:55:56.160Z",
+            "updatedAt": "2021-05-23T02:55:56.160Z",
+            "__v": 0
+        }
+    ]
+### Trong đó: 
+   * boardId: chỉ mục của bảng
+   * headers: Authorization: Bearer {token}
       
+
+## Xoá column
+
+### Body 
+    {
+        "idBoard": "60a93b79ab6ecb4e0cade7e9"
+    }
+
+### Request
+    `DELETE /api/list-editing/:id`
+    
+       curl --location --request DELETE 'http://localhost:3003/api/list-editing/60a9c5b8e46c493187549966' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYThjNzY0YmE3ZDEzNDBhMmY0Y2Q0YiIsImlhdCI6MTYyMTY3NDQ2MywiZXhwIjoxNjI0MjY2NDYzfQ.1IV2hWCq4NmzgqzYIkwSj_rKAi5wAFRqVH0OjJig5QE' \
+    --data-raw ''
+    
+### Response
+      {
+        "code": 200,
+        "message": "Remove Successful"
+    }
+### Trong đó: 
+   * id: chỉ mục của column
+   * idBoard: chỉ mục board chứa nó
+   * headers: Authorization: Bearer {token}
       
-      
-      
-      
-      
-      
-      
+## Cập nhật column
+
+### Body
+    {
+        "title": "Process updated"
+    }
+
+### Request
+    `PUT /api/list-editing/:id`
+    
+       curl --location --request PUT 'http://localhost:3003/api/list-editing/60a9c96683809d358190a7d1' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "title": "Process updated"
+    }'
+    
+### Response
+      {
+        "list_task": [],
+        "_id": "60a9c96683809d358190a7d1",
+        "title": "Process updated",
+        "idBoard": "60a93b79ab6ecb4e0cade7e9",
+        "createdAt": "2021-05-23T03:17:58.475Z",
+        "updatedAt": "2021-05-23T03:18:58.561Z",
+        "__v": 0
+    }
+### Trong đó: 
+   * id: chỉ mục của column
+   * title: tiêu đề mới cần sửa
+   * headers: Authorization: Bearer {token}
+
+## Sao chép column
+
+### Body
+    {
+        "idBoard": "60a93b79ab6ecb4e0cade7e9"
+    }
+
+### Request
+    `POST /api/list-editing/copy/:id`
+    
+     curl --location --request POST 'http://localhost:3003/api/list-editing/copy/60a9c96683809d358190a7d1' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "idBoard": "60a93b79ab6ecb4e0cade7e9"
+    }'
+    
+### Response
+      {
+        "list_task": [],
+        "_id": "60a9c96683809d358190a7d1",
+        "title": "Process updated",
+        "idBoard": "60a93b79ab6ecb4e0cade7e9",
+        "createdAt": "2021-05-23T03:17:58.475Z",
+        "updatedAt": "2021-05-23T03:18:58.561Z",
+        "__v": 0
+    }
+### Trong đó: 
+   * id: chỉ mục của column
+   * idBoard: chỉ mục của bảng 
+   * title: tiêu đề mới cần sửa
+   * headers: Authorization: Bearer {token}
+     
       
       
       
