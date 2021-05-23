@@ -459,7 +459,7 @@
         }'
 
    ### Response
-          {
+       {
             "list_task": [],
             "_id": "60a9c96683809d358190a7d1",
             "title": "Process updated",
@@ -491,7 +491,7 @@
         }'
 
    ### Response
-          {
+        {
             "list_task": [],
             "_id": "60a9c96683809d358190a7d1",
             "title": "Process updated",
@@ -794,7 +794,7 @@
             "updatedAt": "2021-05-23T03:46:59.099Z",
             "__v": 0
         },
-    ]
+      ]
 ### Trong đó: 
    * idList: chỉ mục column chứa nó
    * headers: Authorization: Bearer {token}
@@ -863,7 +863,7 @@
     
 ### Response
      {
-        "code": 200,
+        "code": 200,Cancel changes
         "message": "DELETE SUCCESSFUL"
     }
 ### Trong đó: 
@@ -962,7 +962,6 @@
 ## Sắp xếp task trong column
 
 ### Body
-
     {
     "ListEditingId": "60a9c95a83809d358190a7ce",
     "ListEditingCardIds": [
@@ -1028,10 +1027,10 @@
 
     
 ### Response
-    {
+      {
         "code": 200,
         "message": "Reoder successful."
-    }
+      }
 ### Trong đó: 
    * removedColumnId: column được thay đổi xoá task
    * removedColumnCardIds: danh sách task của colum bị xoá
