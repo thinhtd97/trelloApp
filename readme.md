@@ -506,6 +506,253 @@ REST API cho ứng dụng trello được mô tả bên dưới.
    * title: tiêu đề mới cần sửa
    * headers: Authorization: Bearer {token}
      
+##  Sắp xếp vị trí column trong bảng
+
+### Body
+       {
+        "boardId": "60a93b79ab6ecb4e0cade7e9",
+        "newColumnOrder": [
+            "60a9c96283809d358190a7d0", 
+            "60a9c95a83809d358190a7ce", 
+            "60a9c95f83809d358190a7cf", 
+            "60a9c96683809d358190a7d1", 
+            "60a9cb5d64e83738b794a1e6"
+        ]
+    }
+
+### Request
+    `POST /api/board/reoder-column`
+    
+    curl --location --request POST 'http://localhost:3003/api/board/reoder-column' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "boardId": "60a93b79ab6ecb4e0cade7e9",
+        "newColumnOrder": [
+            "60a9c96283809d358190a7d0", 
+            "60a9c95a83809d358190a7ce", 
+            "60a9c95f83809d358190a7cf", 
+            "60a9c96683809d358190a7d1", 
+            "60a9cb5d64e83738b794a1e6"
+        ]
+    }'
+    
+### Response
+      {
+    "code": 200,
+    "message": "Reorder successful."
+}
+### Trong đó: 
+   * idBoard: chỉ mục của bảng cần sửa
+   * newColumnOrder: thứ tự mới cần sắp xếp lại
+   * headers: Authorization: Bearer {token}
+      
+## Danh sách task
+
+### Body 
+    {
+        "idList": "60a9c95a83809d358190a7ce"
+    }
+
+### Request
+    `GET /api/task`
+    
+     curl --location --request GET 'http://localhost:3003/api/task' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "idList": "60a9c95a83809d358190a7ce"
+    }'
+    
+### Response
+      [
+        {
+            "status": "Uncompleted",
+            "activity": [
+                "usertest created First Task"
+            ],
+            "cover_color": "white",
+            "_id": "60a9d0320bd55c3ee9789a71",
+            "title": "First Task",
+            "taskId": "e93bbb96ad42",
+            "list_editing": "60a9c95a83809d358190a7ce",
+            "createdAt": "2021-05-23T03:46:59.099Z",
+            "updatedAt": "2021-05-23T03:46:59.099Z",
+            "__v": 0
+        },
+    ]
+### Trong đó: 
+   * idList: chỉ mục column chứa nó
+   * headers: Authorization: Bearer {token}
+
+
+
+## Tạo task
+
+### Body 
+    {
+        "title": "Fourth Task",
+        "idList": "60a9c95a83809d358190a7ce",
+        "idBoard": "60a93b79ab6ecb4e0cade7e9"
+    }
+
+### Request
+    `POST /api/task`
+    
+       curl --location --request POST 'http://localhost:3003/api/task' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "title": "Fourth Task",
+        "idList": "60a9c95a83809d358190a7ce",
+        "idBoard": "60a93b79ab6ecb4e0cade7e9"
+    }'
+    
+### Response
+     {
+        "status": "Uncompleted",
+        "activity": [
+            "usertest created Fourth Task"
+        ],
+        "cover_color": "white",
+        "_id": "60a9d04c0bd55c3ee9789a74",
+        "title": "Fourth Task",
+        "taskId": "cda535bb7995",
+        "list_editing": "60a9c95a83809d358190a7ce",
+        "createdAt": "2021-05-23T03:47:24.485Z",
+        "updatedAt": "2021-05-23T03:47:24.485Z",
+        "__v": 0
+    }
+### Trong đó: 
+   * idList: chỉ mục column chứa nó
+   * headers: Authorization: Bearer {token}
+   * idBoard: Bảng chứa column chứa nó
+   * title: Tiêu đề task
+            
+## Xoá Task
+
+### Body
+    {
+        "idList": "60a8cd3c9fd5fb461ff35a5f"
+    }
+
+
+### Request
+    `POST /api/task/:taskId`
+    
+     curl --location --request DELETE 'http://localhost:3003/api/task/60a9d04c0bd55c3ee9789a74' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "idList": "60a8cd3c9fd5fb461ff35a5f"
+    }'
+    
+### Response
+     {
+        "code": 200,
+        "message": "DELETE SUCCESSFUL"
+    }
+### Trong đó: 
+   * idList: chỉ mục column chứa nó
+   * headers: Authorization: Bearer {token}
+      
+## Lấy chi tiết task
+
+### Body
+    {
+        "idBoard": "60a93b79ab6ecb4e0cade7e9"
+    }
+
+
+### Request
+    `GET /api/task/:taskId`
+    
+     curl --location --request GET 'http://localhost:3003/api/task/60a9d0320bd55c3ee9789a71' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "idBoard": "60a93b79ab6ecb4e0cade7e9"
+    }'
+    
+### Response
+     {
+        "status": "Uncompleted",
+        "activity": [
+            "usertest created First Task"
+        ],
+        "cover_color": "white",
+        "_id": "60a9d0320bd55c3ee9789a71",
+        "title": "First Task",
+        "taskId": "e93bbb96ad42",
+        "list_editing": "60a9c95a83809d358190a7ce",
+        "createdAt": "2021-05-23T03:46:59.099Z",
+        "updatedAt": "2021-05-23T03:46:59.099Z",
+        "__v": 0
+    }
+### Trong đó: 
+   * idBoard: chỉ mục board chứa nó
+   * taskId: chỉ mục task cần tìm kiếm
+   * headers: Authorization: Bearer {token}
+
+## Cập nhật task
+
+### Body
+    {
+        "idList": "60a9c95a83809d358190a7ce",
+        "title": "Title Updated",
+        "idBoard": "60a93b79ab6ecb4e0cade7e9",
+        "description": "Description",
+        "status": "Over Due"
+    }
+
+
+### Request
+    `GET /api/task/:taskId`
+    
+       curl --location --request PUT 'http://localhost:3003/api/task/60a9d0320bd55c3ee9789a71' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "idList": "60a9c95a83809d358190a7ce",
+        "title": "Title Updated",
+        "idBoard": "60a93b79ab6ecb4e0cade7e9",
+        "description": "Description",
+        "status": "Over Due"
+    }'
+    
+### Response
+     {
+        "status": "Over Due",
+        "activity": [
+            "usertest created First Task"
+        ],
+        "cover_color": "white",
+        "_id": "60a9d0320bd55c3ee9789a71",
+        "title": "Title Updated",
+        "taskId": "e93bbb96ad42",
+        "list_editing": "60a9c95a83809d358190a7ce",
+        "createdAt": "2021-05-23T03:46:59.099Z",
+        "updatedAt": "2021-05-23T04:15:35.762Z",
+        "__v": 0,
+        "description": "Description"
+    }
+### Trong đó: 
+   * status: trạng thái task
+   * activity: hoạt động của task
+   * headers: Authorization: Bearer {token}
+   * title: tiêu đề task
+   * taskId: chỉ mục task
+   * list_editing: chỉ mục column chứa nó
+   * description: nội dung task
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       
       
