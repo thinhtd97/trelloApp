@@ -4,6 +4,27 @@ const Board = require('../model/Board');
 const User = require('../model/User');
 const crypto = require('crypto');
 
+
+const listTask = async (req, res) => {
+    try {
+        const { idList } = req.body;
+        const tasks = await Task.find({ list_editing:idList })
+        if(tasks) {
+            return res.status(200).json(tasks);
+        }
+        return res.status(400).json({
+            code: 400,
+            message: "Error."
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            code: 500,
+            message: "Server Error"
+        })
+    }
+}
+
 const createTask = async (req, res) => {
     const { title, idList, idBoard } = req.body;
     try {
@@ -17,13 +38,13 @@ const createTask = async (req, res) => {
                 const board = value[2];
 
                 if (board) {
-                    user.activity.push(`${user.username} create ${task.title}`);
-                    await user.save();
                     const task = new Task({
                         title,
                         taskId: crypto.randomBytes(6).toString('hex'),
                         list_editing: listEditingParent._id,
                     })
+                    user.activity.push(`${user.username} create ${task.title}`);
+                    await user.save();
                     await task.activity.push(`${user.username} created ${task.title}`);
                     const created = await task.save();
                     if (created) {
@@ -77,7 +98,7 @@ const deleteTask = async (req, res) => {
         const { idList } = req.body;
         Promise.all([
             Task.findById(req.params.taskId), 
-            User.findById(req.user.id)]
+            User.findById(req.user.id)],
         )
         .then(async (value) => {
             const task = value[0];
@@ -92,7 +113,10 @@ const deleteTask = async (req, res) => {
                     }
                 );
                 const deleted = await task.remove();
-                return res.status(200).json(deleted);
+                return res.status(200).json({
+                    code: 200,
+                    message: "DELETE SUCCESSFUL"
+                });
             }
         })
     } catch (error) {
@@ -105,7 +129,7 @@ const deleteTask = async (req, res) => {
 }
 
 const updateTask = async (req, res) => {
-    let { title, due_time, idBoard, description, status, pos } = req.body;
+    let { title, due_time, idBoard, description, status } = req.body;
     try {
         Promise.all([
             Task.findById(req.params.taskId), 
@@ -147,4 +171,5 @@ module.exports = {
     deleteTask,
     detailTask,
     updateTask,
+    listTask
 }

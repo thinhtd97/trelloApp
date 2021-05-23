@@ -7,6 +7,7 @@ router.get('/closed-board', middleware.protect, BoardController.listBoardClosed)
 router.route('/').get(middleware.protect, BoardController.listBoard)
                 .post(middleware.protect, BoardController.createBoard);
 router.get('/without-star', middleware.protect, BoardController.listBoardWithOutStar);
+router.get('/star', middleware.protect, BoardController.listBoardStar);
 router.route('/:id')
     .put(middleware.protect, BoardController.updateBoard)
     .delete(middleware.protect, BoardController.deleteBoard)

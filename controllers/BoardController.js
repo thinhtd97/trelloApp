@@ -55,7 +55,10 @@ const updateBoard = async (req, res) => {
               
                 user.activity.push(`${user.username} updated ${board.title} to ${updated.title}`);
                 await user.save();
-                return res.status(200).json(updated);
+                return res.status(200).json({
+                    code: 200,
+                    message: "UPDATE STAR SUCCESSFUL"
+                });
             }
     
             return res.status(400).json({
@@ -158,6 +161,25 @@ const listBoardWithOutStar = async (req, res) => {
     }
 }
 
+const listBoardStar = async (req, res) => {
+    try {
+        const boards = await Board.find({ star: true, user: req.user.id })
+        if(!boards) {
+            return res.status(400).json({
+                code: 400,
+                message: "Board Error!"
+            })
+        }
+        return res.status(200).json(boards);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            code: 500,
+            message: "Server Error"
+        })
+    }
+}
+
 const deleteBoard = async (req, res) => {
     try {
         Promise.all([Board.findById(req.params.id), User.findById(req.user.id)])
@@ -169,7 +191,10 @@ const deleteBoard = async (req, res) => {
                 user.activity.push(`${user.username} deleted ${deleted.title}`);
                 await ListEditing.deleteMany({ board: req.params.id });
                 await user.save();
-                return res.status(200).json(deleted);
+                return res.status(200).json({
+                    code: 200,
+                    message: "DELETE SUCCESSFUL"
+                });
             }
             return res.status(400).json({
                 code: 400,
@@ -253,5 +278,6 @@ module.exports = {
     deleteBoard,
     listBoardClosed,
     inviteMember,
-    reOrderListEditingInBoard
+    reOrderListEditingInBoard,
+    listBoardStar
 }

@@ -4,7 +4,7 @@ const Board = require('../model/Board');
 const createListEditing = async (req, res) => {
     const { title } = req.body;
     try {
-        const board = await Board.findById(req.params.boardId);
+        const board = await Board.findOne({ _id: req.params.boardId, member: req.user.id });
         if (!board) {
             return res.status(400).json({
                 code: 400,
@@ -42,10 +42,12 @@ const createListEditing = async (req, res) => {
 }
 
 const deleteListEditing = async (req, res) => {
+    const { idBoard } = req.body;
     try {
         const listEditing = await ListEditing.findById(req.params.id);
         if (listEditing) {
-            await ListEditing.remove();
+            await Board.updateOne({ _id: idBoard }, { $pull: { column: `${req.params.id}` } })
+            await listEditing.remove();
             return res.status(200).json({
                 code: 200,
                 message: "Remove Successful"
@@ -88,13 +90,15 @@ const updateListEditing = async (req, res) => {
 }
 
 const copyListEditing = async (req, res) => {
-    const { boardId } = req.body;
+    const { idBoard } = req.body;
     try {
-        Promise.all([ListEditing.findById(req.params.id), Board.findById(boardId)])
+        Promise.all([
+            ListEditing.findById(req.params.id), 
+            Board.findOne({ _id: idBoard, member: req.user.id })])
             .then(async (value) => {
                 const listEditing = value[0];
                 const board = value[1];
-                if (listEditing) {
+                if (listEditing && board) {
                     const newListEditing = new ListEditing({
                         title: listEditing.title,
                         idBoard: listEditing.idBoard,
