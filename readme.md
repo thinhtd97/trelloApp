@@ -235,39 +235,6 @@
    ### Trong đó: 
     * headers: Authorization: Bearer {token}      
 
-
-   ## Cập nhật bảng
-
-   ### Request
-        `PUT /api/board/:id`
-
-           curl --location --request PUT 'http://localhost:3003/api/board/60a93b79ab6ecb4e0cade7e9' \
-        --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYTkzOWM1YWI2ZWNiNGUwY2FkZTdlNyIsImlhdCI6MTYyMTcwMzE4NiwiZXhwIjoxNjI0Mjk1MTg2fQ.uOb3IFlEEExlLJTxzNpbIy8NIuClzheeAaytx3oMOWI' \
-        --header 'Content-Type: application/json' \
-        --data-raw '{
-            "title": "Title Updated"
-        }'
-
-   ### Response
-          {
-            "member": [
-                "60a939c5ab6ecb4e0cade7e7"
-            ],
-            "star": true,
-            "closed": false,
-            "column": [],
-            "_id": "60a93b79ab6ecb4e0cade7e9",
-            "title": "Title Updated",
-            "user": "60a939c5ab6ecb4e0cade7e7",
-            "createdAt": "2021-05-22T17:12:25.309Z",
-            "updatedAt": "2021-05-23T02:31:13.667Z",
-            "__v": 0
-        }
-   ### Trong đó: 
-    * id: chỉ mục của bảng
-    * headers: Authorization: Bearer {token}
-
-
    ## Xoá bảng
 
    ### Request
