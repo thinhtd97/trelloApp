@@ -538,10 +538,10 @@
         }'
         
    ### Response
-          {
-        "code": 200,
-        "message": "Reorder successful."
-    }
+        {
+           "code": 200,
+           "message": "Reorder successful."
+        }
    ### Trong đó: 
     * idBoard: chỉ mục của bảng cần sửa
     * newColumnOrder: thứ tự mới cần sắp xếp lại
