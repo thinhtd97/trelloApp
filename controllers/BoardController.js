@@ -144,7 +144,7 @@ const updateStar = async (req, res) => {
 
 const listBoardWithOutStar = async (req, res) => {
     try {
-        const boards = await Board.find({ star: false, user: req.user.id })
+        const boards = await Board.find({ star: false, member: req.user.id })
         if(!boards) {
             return res.status(400).json({
                 code: 400,
@@ -163,7 +163,7 @@ const listBoardWithOutStar = async (req, res) => {
 
 const listBoardStar = async (req, res) => {
     try {
-        const boards = await Board.find({ star: true, user: req.user.id })
+        const boards = await Board.find({ star: true, member: req.user.id })
         if(!boards) {
             return res.status(400).json({
                 code: 400,
